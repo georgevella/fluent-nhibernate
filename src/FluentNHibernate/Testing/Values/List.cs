@@ -2,8 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Iesi.Collections;
-using Iesi.Collections.Generic;
+
 using FluentNHibernate.Utils;
 
 namespace FluentNHibernate.Testing.Values
@@ -38,12 +37,12 @@ namespace FluentNHibernate.Testing.Values
                     // infallible.
                     if (propertyAccessor.PropertyType.IsAssignableFrom(typeof(ISet<TListElement>)))
                     {
-                        collection = new HashedSet<TListElement>(Expected.ToList());
+                        collection = new HashSet<TListElement>(Expected.ToList());
                     }
-                    else if (propertyAccessor.PropertyType.IsAssignableFrom(typeof(ISet)))
-                    {
-                        collection = new HashedSet((ICollection)Expected);
-                    }
+                    //else if (propertyAccessor.PropertyType.IsAssignableFrom(typeof(ISet)))
+                    //{
+                    //    collection = new HashSet((ICollection)Expected);
+                    //}
                     else if (propertyAccessor.PropertyType.IsArray)
                     {
                         collection = Array.CreateInstance(typeof(TListElement), Expected.Count());
